@@ -1,0 +1,214 @@
+COMANDOS
+---------
+
+1) git init   => Crear repositorios
+
+2) git status => Para ver el estado de los archivos
+
+
+3) git rm --cached index.html => Sirve  para sacar del staging al archivo deshace el git add index.html
+
+
+4) git commit -m 'mensaje'  => Confirmando cambios
+
+
+5) git commit --amend  => Agregar cambio pero a partir del anterior hecho poniendo el
+                       mismo mensaje
+
+
+6) git tag -a 0.5 -m "mensaje"  => Me permite versionar mi proyecto
+
+7) git tag -l   => para ver la lista de tags
+
+8) git tag 0.3 c9527c6f865f8eeff8763661a9868d94c4ba9cc1  => tambien puedo hacer tags ligeros con los hash
+   git tag -d 0.3  => Para eliminar un tag
+   git tag -f -a 0.3 -m "mensaje" c9527c6f865f8eeff8763661a9868d94c4ba9cc1  => para renombrar un tag
+
+
+
+9)  git config --global alias.superlog "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"     => git log personalizado
+
+
+10) git diff 6f547f299e93(hash con el que quiero ver la diferencia a m estado actual)
+    git diff 6f547f299e93   6f547f29988   => aqui hago un comparacion entre hash y me mostrara las diferencias
+
+
+11) git reset --soft 6f547f2
+
+Ejemplo:
+---------
+Tenemos estos tres commits 
+c9ab006 (HEAD -> master) tercer cambio
+6f547f2 segundo cambio
+c9527c6 (tag: 0.5) primer cambio
+
+Con git reset --soft borro el commit a partir del commit que le indique hacia arriba,
+pone los cambios en el area de staging listos para hacer un commit nuevamente
+
+
+12) git reset --mixed 6f547f299e939dd1  => a diferencia del soft este si lo saca del area staging los borra
+
+
+13) git reset --hard => los borra del stating y del local repository hay que tener cuidado
+    git reset --hard c9527c6  => Le puedo enviar un hash diciendole a partir de donde quiero que se
+    resetee.
+    
+    Si por error borre los cambios puedo regresar en el tiempo , siempre  y cuando te la los hash de los logs
+    asi:
+    git reset --hard c9527c6
+
+
+
+14) git branch nombre_rama  => para crear una rama
+    git branch -d nombre_rama  => para borrar una rama
+    git branch -D nombre_rama => forzar borrado de una rama
+    git branch -m nombre_actual  nombre_nuevo   => sirve para renombrar		
+
+
+15) git checkout nombre_rama  => para moverme entre ramas
+    git checkout c9527c6  => tambien nos podemos mover entre commits para saber que paso en ese 	preciso momento 
+    git checkout -d nombre_rama  => Creo la rama y me muevo en la rama en ese momento
+    git checkout -- archivo  => cuando queremos descartar un cambio 	    
+
+    Las ramas se crean a partir de  la master    
+
+
+
+
+16) git merge rama_a_fusionar => para mesclar las ramas,como primer paso me tengo que situar en la rama master
+
+
+
+
+17) git stash  =>  guardando cambios temporales  => cuando hago un cambio y quiero pasarme a otra rama
+        pero se tengo el problema que mi cambi ose pasara tambien a la otra rama, y tampoco estoy listo para guardar ese cambio, lo que hago con este comando es guardarlo temportalmente, tener en cuenta que esto funcionara luego que se haga el commit
+
+   git stash list => para listar los stash
+   git stash drop stash@{0} => Para eliminar un stash
+   git stash apply  => con esto aplicamos el cambio, solo aplicara el stash con el valor stash@{0}
+     que es el ultimo cambio
+   git stash apply valor_stash  => con esto aplico el cambio segun el stash que le envio
+
+
+
+
+18) git cherry-pick 9fa6133 => Este comando sirve cuano hice un commit en otra rama, pero necesito jalar ese cambio a otra rama para luego fusionarlo con master, el flujo es el siguiente
+
+   *Lo primero es situarme en master(git checkout master)
+   * crear mi rama a donde jalare mi commit(git checkout -b rama_fixture)
+   *luego hago cherry-pick  hash_del_commit que quiero agregar a esta rama y posterior fusionarlo con master.
+   *luego me coloco con git checkout master
+   * por ultimo hago la fusion con la rama donde tengo mi fixture git merge rama_fixture 
+
+
+
+19) Añadiendo una lave SSH  Github
+    --------------------------------
+
+   *ssh-keygen -t rsa -b 4096 -C "jorgewilliamreyes26@hotmail.com"
+   *sudo apt-get install xclip #asumiendo que sea ubuntu
+   xclip -sel clip < ~/.ssh/id_rsa.pub	=> Con esta herramienta es como hace un control + V
+
+	
+
+20) git remote add [origin] [SSH/HTTPS] Conecta un repositorio con nuestro equipo local.
+    git remote -v Lista las conexiones existentes.
+   git remote remove [origin] Elimina una conexión con algún repositorio.
+
+
+
+21) git fetch origin master => Aqui traigo los archivos de mi reporsitorio remoto a mi repo local
+    le digo traeme la rama master 
+    git merge origin/master => si al ejecutar este comando sale un error ejecuto el siguiente comando
+    git merge origin/master --allow-unrelated-histories  
+    git commit -m "mensaje"  => Luego me pide que comitee el cambio que estoy bajando del repo remoto
+    
+
+
+
+22) git push origin master  => empujar cambios a mi repo remoto
+    git push origin master --tags  => Con esto enviamos los tags
+    git push origin rama  => Con esto enviamos la rama
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    	
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
